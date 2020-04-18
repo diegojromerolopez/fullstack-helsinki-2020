@@ -12,10 +12,6 @@ function App() {
     setCountryFinderValue(event.target.value)
   }
 
-  const viewCountryHandler = (event) => {
-    return 
-  }
-
   const loadCountriesHook = () => {
     axios
       .get('https://restcountries.eu/rest/v2/all')
