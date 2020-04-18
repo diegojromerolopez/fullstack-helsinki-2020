@@ -24,10 +24,7 @@ function App() {
   const MAX_COUNTRY_LIST_SIZE = 10
   const selectedCountries = countries.filter(
     (country) => country.name.match(RegExp(`${countryFinderValue}`))
-  )
-
-  console.log(selectedCountries)
-  
+  )  
 
   return (
     <div>
