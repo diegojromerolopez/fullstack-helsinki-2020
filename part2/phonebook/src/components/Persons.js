@@ -1,7 +1,7 @@
 import React from 'react'
 import Person from './Person'
 
-const Persons = ({persons, nameFilter}) => {
+const Persons = ({persons, nameFilter, deletePersonHandler}) => {
     const nameFilterText = nameFilter ? `Filtering by names that start with ${nameFilter}` : "No filters applied"
     if(persons.length > 0){
         return (
@@ -10,7 +10,7 @@ const Persons = ({persons, nameFilter}) => {
                 <div>
                     <ul>
                         {persons.map(person => 
-                            <Person key={person.name} person={person} />
+                            <Person key={person.name} person={person} deletePersonHandler={deletePersonHandler} />
                         )}
                     </ul>
                 </div>
