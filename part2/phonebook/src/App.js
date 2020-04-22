@@ -3,18 +3,44 @@ import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
 import personService from './services/persons'
+import './index.css'
+
 
 const App = () => {
   const [ persons, setPersons] = useState([]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
-  const [ nameFilter, setNameFilter] = useState('')
+  const [ nameFilter, setNameFilter ] = useState('')
+  const [ notificationMessage, setNotificationMessage ] = useState(null)
+  const [ notificationType, setNotificationType ] = useState(null)
+
+  const Notification = ({ message, type }) => {
+    if (message === null) {
+      return null
+    }
+    return (
+      <div className={type}>
+        {message}
+      </div>
+    )
+  }
+  const MakeNotification = (message, type, timeout) =>{
+    setNotificationMessage(message)
+    setNotificationType(type)
+    setTimeout(() => {
+      setNotificationMessage(null)
+      setNotificationType(null)
+    }, timeout)
+  }
 
   const loadPersonsHook = () => {
     personService
       .getAll()
       .then(initialPersons => {
         setPersons(initialPersons)
+      })
+      .catch(error => {
+        MakeNotification(`Unable to get persons because of an error in the server`, "error", 5000)
       })
   }
   useEffect(loadPersonsHook, [])
@@ -44,6 +70,11 @@ const App = () => {
         .then(returnedPerson => {
           setPersons(persons.map(personI => personI.id !== person.id ? personI : returnedPerson))
           clearNewPerson()
+          MakeNotification(`${returnedPerson.name} has been successfully updated`, "success", 5000)
+        })
+        .catch(error => {
+          MakeNotification(`${person.name} has not been found in the server`, "error", 5000)
+          setPersons(persons.filter(p => p.id !== person.id))
         })
     }else{
       const newPerson = {
@@ -56,6 +87,10 @@ const App = () => {
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
           clearNewPerson()
+          MakeNotification(`${returnedPerson.name} has been successfully created`, "success", 5000)
+        })
+        .catch(error => {
+          MakeNotification(`Unable to create ${newPerson.name} because of an error in the server`, "error", 5000)
         })
     }
   }
@@ -70,6 +105,11 @@ const App = () => {
       .destroy(personId)
       .then(() => {
         setPersons(persons.filter((person) => person.id !== personId ))
+        MakeNotification(`${person.name} has been successfully deleted`, "success", 5000)
+      })
+      .catch(error => {
+        setPersons(persons.filter((person) => person.id !== personId ))
+        MakeNotification(`Unable to destroy ${person.name} because it doesn't exist`, "error", 5000)
       })
   }
 
@@ -87,6 +127,7 @@ const App = () => {
     <div>
       <div>
         <h2>Phonebook</h2>
+        <Notification message={notificationMessage} type={notificationType} />
         <Filter 
           nameFilter={nameFilter}
           onInputChangeHandler={(event) => { setNameFilter(event.target.value)}}
