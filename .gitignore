@@ -105,3 +105,18 @@ dist
 
 # MacOS
 .DS_Store
+
+# Node.js stuff
+package-lock.json
+
+# Course lessons
+part1-lesson/
+part2-lesson/
+part3-lesson/
+part4-lesson/
+part5-lesson/
+part6-lesson/
+part7-lesson/
+part8-lesson/
+part9-lesson/
+part10-lesson/
