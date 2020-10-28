@@ -3,6 +3,8 @@ const anecdoteReducer = (state = [], action) => {
       case 'NEW_ANECDOTE':
         console.log(state, action.data)
         return [...state, action.data]
+      case 'INIT_ANECDOTES':
+        return action.data
       case 'VOTE_ANECDOTE':
         console.log(state)
         const id = action.data.id
@@ -46,4 +48,11 @@ const anecdoteReducer = (state = [], action) => {
     }
   }
   
+  export const initializeAnecdotes = (anecdotes) => {
+    return {
+      type: 'INIT_ANECDOTES',
+      data: anecdotes,
+    }
+  }
+
   export default anecdoteReducer
