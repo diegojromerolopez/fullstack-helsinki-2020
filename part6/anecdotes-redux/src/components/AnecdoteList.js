@@ -18,11 +18,20 @@ const Anecdote = ({ anecdote, handleClick }) => {
 
 const AnecdoteList = () => {
     const dispatch = useDispatch()
-    const anecdotes = useSelector(state => state)
-  
+    const anecdotes = useSelector(state => state.anecdotes)
+    const filter = useSelector(state => state.filter)
+    let filteredAnecdotes = anecdotes
+    if(filter){
+      const actualFilter = filter.toLowerCase()
+      const includeAnecdote = anecdote => {
+        return anecdote.content.toLowerCase().includes(actualFilter)
+      }
+      filteredAnecdotes = anecdotes.filter(includeAnecdote)
+    }
+    
     return(
       <ul>
-        {anecdotes.map(anecdote =>
+        {filteredAnecdotes.map(anecdote =>
           <Anecdote
             key={anecdote.id}
             anecdote={anecdote}

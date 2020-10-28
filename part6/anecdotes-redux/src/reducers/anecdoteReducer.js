@@ -4,6 +4,7 @@ const anecdoteReducer = (state = [], action) => {
         console.log(state, action.data)
         return [...state, action.data]
       case 'VOTE_ANECDOTE':
+        console.log(state)
         const id = action.data.id
         const anecdoteToVote = state.find(n => n.id === id)
         const updatedAnecdote = { 
