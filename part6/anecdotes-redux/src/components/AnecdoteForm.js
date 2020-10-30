@@ -11,8 +11,8 @@ const NewAnecdote = () => {
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
     dispatch(createAnecdote(content))
-    dispatch(showNotification(`you successfully added '${content}'`))
-    setTimeout(() => dispatch(showNotification('')), 5000)
+    dispatch(showNotification(`you successfully added '${content}'`, 3))
+    //setTimeout(() => dispatch(showNotification('')), 5000)
   }
 
   return (
