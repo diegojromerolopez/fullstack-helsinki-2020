@@ -19,10 +19,5 @@ const store = createStore(
   )
 )
 
-anecdoteService.getAll().then(anecdotes =>
-  anecdotes.forEach(anecdote => {
-    store.dispatch({ type: 'NEW_ANECDOTE', data: anecdote })
-  })
-)
 
 export default store
