@@ -4,7 +4,6 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import filterReducer from './reducers/filterReducer'
 import anecdoteReducer from './reducers/anecdoteReducer'
 import notificationReducer from './reducers/notificationReducer.js'
-import anecdoteService from './services/anecdotes'
 
 
 const reducer = combineReducers({
