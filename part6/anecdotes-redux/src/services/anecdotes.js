@@ -20,4 +20,12 @@ const update = async (anecdote) => {
     return response.data
 }
 
-export default { getAll, createNew, update }
+const del = async (anecdote) => {
+  console.log('delete anecdote: ', anecdote)
+  const response = await axios.delete(`${baseUrl}/${anecdote.id}`)
+  return response.data
+}
+
+const endpoints = { getAll, createNew, update, del }
+
+export default endpoints
