@@ -2,17 +2,17 @@ import axios from 'axios'
 
 import tokenService from './token'
 
-const baseUrl = 'http://localhost:3000/blogs'
+const baseUrl = 'http://localhost:3001/blogs'
 
 const getAll = () => {
   const config = { headers: { Authorization: tokenService.getToken() } }
-  const request = axios.get(`${baseUrl}/all`, config)
+  const request = axios.get(`${baseUrl}`, config)
   return request.then(response => response.data)
 }
 
 const create = async newObject => {
   const config = { headers: { Authorization: tokenService.getToken() } }
-  const response = await axios.post(`${baseUrl}/blogs`, newObject, config)
+  const response = await axios.post(`${baseUrl}`, newObject, config)
   return response.data
 }
 

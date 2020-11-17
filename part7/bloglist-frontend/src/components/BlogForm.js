@@ -14,7 +14,9 @@ const BlogForm = ({ blogs, setBlogs, setNotification }) => {
     const blogObject = {
       title: newBlogTitle,
       author: newBlogAuthor,
-      url: newBlogUrl
+      url: newBlogUrl,
+      likes: 0,
+      likers: []
     }
     try {
       const respBlog = await blogService.create(blogObject)

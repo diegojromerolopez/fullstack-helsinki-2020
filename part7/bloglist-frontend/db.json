@@ -1,0 +1,32 @@
+{
+  "blogs": [
+    {
+      "title": "My life",
+      "author": "John Smith",
+      "url": "john-smith.example.com",
+      "likes": 0,
+      "likers": [],
+      "id": 1
+    },
+    {
+      "title": "A new story",
+      "author": "Richard X",
+      "url": "rx.com",
+      "likes": 0,
+      "likers": [],
+      "id": 2
+    }
+  ],
+  "posts": [
+    {
+        "title": "First post",
+        "content": "This is a first test post, be gentle",
+        "url": "john-smith.example.com/posts/2020-01-01-first-post",
+        "likes": 0,
+        "likers": [],
+        "id": 1,
+        "blog_id": 1,
+        "creator": {"name": "John Smith", "id": 1}
+    }
+  ]
+}

@@ -12,7 +12,11 @@ const PostForm = ({ blog, posts, setPosts, setNotification }) => {
     const postObject = {
       title: newPostTitle,
       content: newPostContent,
-      url: newPostUrl
+      url: newPostUrl,
+      blog_id: blog.id,
+      likers: [],
+      likes: 0,
+      creator: { username: '', id: '' }
     }
     try {
       const respPost = await postService.create(blog.id, postObject)
